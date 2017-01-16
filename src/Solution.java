@@ -13,7 +13,12 @@ public class Solution {
         newStack.push(2);
         newStack.push(4);
 
-        System.out.println(sortStack(newStack));
+        /*System.out.println(sortStack(newStack));
+
+        MyQueue queue=new MyQueue();*/
+
+        System.out.println(removeKdigits("1111",3));
+
 
 
     }
@@ -37,4 +42,47 @@ public class Solution {
 
         return newStack;
     }
+
+    /**Stack, remove k digits*/
+
+    public static String removeKdigits(String num, int k){
+
+        int length=num.length();
+
+        if(length==0) return "0";
+
+        int i=0;
+        Stack<Character> stack=new Stack<>();
+
+
+        while(i<num.length()){
+
+
+            while(k>0 && !stack.empty() && stack.peek()>num.charAt(i)){
+                stack.pop();
+                k--;
+            }
+
+            stack.push(num.charAt(i));
+            i++;
+        }
+
+        while(k>0){
+            stack.pop();
+            k--;
+        }
+
+        StringBuilder sb=new StringBuilder();
+        while(!stack.empty()){
+        sb.append(stack.pop());
+        }
+        sb.reverse();
+
+        while(sb.length()>0 && sb.charAt(0)=='0')
+            sb.deleteCharAt(0);
+
+
+        return sb.toString();
+    }
+
 }
