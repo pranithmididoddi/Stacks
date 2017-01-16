@@ -43,7 +43,7 @@ public class Solution {
         return newStack;
     }
 
-    /**Stack, remove k digits*/
+    /**Stack, remove k digits and print the lowest number possible*/
 
     public static String removeKdigits(String num, int k){
 
