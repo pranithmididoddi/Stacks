@@ -17,7 +17,9 @@ public class Solution {
 
         MyQueue queue=new MyQueue();*/
 
-        System.out.println(removeKdigits("1111",3));
+        //System.out.println(removeKdigits("12",2));
+        String[] str= { "2", "1", "+", "3", "*" };
+        System.out.println(evalrevpol(str));
 
 
 
@@ -81,8 +83,45 @@ public class Solution {
         while(sb.length()>0 && sb.charAt(0)=='0')
             sb.deleteCharAt(0);
 
+        if(sb.length()==0) return "0";
+
 
         return sb.toString();
+    }
+
+    /**Reverse polish notation using stacks*/
+    public static int evalrevpol(String[] tokens){
+
+        Stack<String> stack=new Stack<>();
+        String string="+-/*";
+        int val=0;
+
+        for(String s:tokens){
+            if(!string.contains(s)){
+                stack.push(s);
+            }
+            else{
+                int a=Integer.valueOf(stack.pop());
+                int b=Integer.valueOf(stack.pop());
+                switch (s){
+                    case "+":
+                        stack.push(String.valueOf(a+b));
+                        break;
+                    case "-":
+                        stack.push(String.valueOf(b-a));
+                        break;
+                    case "/":
+                        stack.push(String.valueOf(a/b));
+                        break;
+                    case "*":
+                        stack.push(String.valueOf(a*b));
+                        break;
+                }
+            }
+
+        }
+        val=Integer.valueOf(stack.pop());
+        return val;
     }
 
 }
