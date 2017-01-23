@@ -129,4 +129,32 @@ public class Solution {
 
     }
 
+
+    public boolean find132pattern(int[] nums) {
+        Stack<Integer> s1 = new Stack<>();
+        Stack<Integer> s2 = new Stack<>();
+        Integer left = null;
+        int i = 0;
+        while(i < nums.length) {
+            if(s1.empty() || nums[i] <= s1.peek()) {
+                if(left == null || left >= nums[i]) {
+                    left = nums[i];
+                } else {
+                    s1.push(left);
+                    s2.push(nums[i]);
+                    left = null;
+                }
+                i++;
+            } else if(nums[i] < s2.peek()) {
+                return true;
+            } else {
+                int l = s1.pop();
+                s2.pop();
+                if(left == null)
+                    left = l;
+            }
+        }
+        return false;
+    }
+
 }
