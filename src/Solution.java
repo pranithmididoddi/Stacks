@@ -124,4 +124,9 @@ public class Solution {
         return val;
     }
 
+    public void printhello(){
+        System.out.println("Just saving the day on github");
+
+    }
+
 }
