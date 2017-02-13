@@ -157,4 +157,28 @@ public class Solution {
         return false;
     }
 
+    public List<Integer> preorderTraversal(TreeNode root) {
+
+        Stack<TreeNode> stack=new Stack<>();
+        List<Integer> list=new ArrayList<>();
+
+        if(root==null) return list;
+
+        stack.push(root);
+
+        while(!stack.empty()){
+            TreeNode temp=stack.pop();
+            list.add(temp.val);
+
+            if(temp.right!=null){
+                stack.push(temp.right);
+            }
+
+            if(temp.left!=null){
+                stack.push(temp.left);
+            }
+
+        }
+        return list;
+    }
 }
