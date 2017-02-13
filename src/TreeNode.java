@@ -5,4 +5,9 @@ public class TreeNode {
     TreeNode root;
     TreeNode left;
     TreeNode right;
+    int val;
+
+    public TreeNode(int val){
+        val=this.val;
+    }
 }
