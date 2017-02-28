@@ -181,4 +181,40 @@ public class Solution {
         }
         return list;
     }
+
+    public String removeKdigits(String num, int k) {
+        StringBuffer sb=new StringBuffer();
+        Stack<Character> stack=new Stack<>();
+
+        if(num.length()==0) return "0";
+
+        int i=0;
+        while(i<num.length()){
+
+            while(k>0 && !stack.empty() && stack.peek()>num.charAt(i)){
+                stack.pop();
+                k--;
+            }
+
+            stack.push(num.charAt(i));
+            i++;
+        }
+
+        while(k>0){
+            stack.pop();
+            k--;
+        }
+
+        while(!stack.empty()){
+            sb.append(stack.pop());
+        }
+        sb.reverse();
+
+        while(sb.length()> 1 && sb.charAt(0)=='0'){
+            sb.deleteCharAt(0);
+        }
+        if(sb.length()==0)return "0";
+
+        return sb.toString();
+    }
 }
